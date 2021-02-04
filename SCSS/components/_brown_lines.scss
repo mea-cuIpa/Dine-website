@@ -1,0 +1,14 @@
+*.brown-lines {
+  position: relative;
+  &::after {
+    position: absolute;
+    content: '';
+    width: 16rem;
+    height: 8rem;
+    background: url(../images/patterns/pattern-lines.svg) no-repeat;
+    top: var(--br-line-top, 0);
+    left: var(--br-line-left, 0);
+    display: var(--br-line-display, block);
+    z-index: var(--br-line-z-index, 0);
+  }
+}

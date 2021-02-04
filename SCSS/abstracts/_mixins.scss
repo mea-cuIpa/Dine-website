@@ -1,0 +1,77 @@
+// MEDIA QUERIES
+/*
+0 - 600px:      Phone is where normal styles apply
+600 - 1200px:   Tablet
+1200 > :    Desktop
+
+*/
+@mixin respond($breakpoint) {
+  @if $breakpoint == tab-land {
+    @media only screen and (min-width: 37.5em) {
+      @content;
+    } //768px
+  }
+  @if $breakpoint == desktop {
+    @media only screen and (min-width: 75em) {
+      @content;
+    } //1200px
+  }
+}
+
+@mixin resolution($resolution) {
+  @if $resolution == high {
+    @media (min-resolution: 120dpi) {
+      @content;
+    }
+  }
+}
+
+$colorRanges: 10, 20, 30, 40, 50;
+
+@mixin defineColorHSL($color, $hue, $saturation, $lightness) {
+  #{$color}: unquote('hsl(#{$hue}, #{$saturation}, #{$lightness})');
+  #{$color}-h: #{$hue};
+  #{$color}-s: #{$saturation};
+  #{$color}-l: #{$lightness};
+  @each $colorRange in $colorRanges {
+    #{$color}-l#{$colorRange}: unquote(
+      'hsl(#{$hue}, #{$saturation}, #{$lightness * ($colorRange/100 + 1)})'
+    );
+    #{$color}-s#{$colorRange}: unquote(
+      'hsl(#{$hue}, #{$saturation * ($colorRange/100 + 1)}, #{$lightness})'
+    );
+  }
+}
+
+@function adjustHSLA(
+  $color,
+  $hMultiplier: 1,
+  $sMultiplier: 1,
+  $lMultiplier: 1,
+  $opacity: 1
+) {
+  $color: str-replace($color, 'var(');
+  $color: str-replace($color, ')');
+  $color-h: var(#{$color + '-h'});
+  $color-s: var(#{$color + '-s'});
+  $color-l: var(#{$color + '-l'});
+  @return hsla(
+    calc(#{$color-h} * #{$hMultiplier}),
+    calc(#{$color-s} * #{$sMultiplier}),
+    calc(#{$color-l} * #{$lMultiplier}),
+    $opacity
+  );
+}
+
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        str-slice($string, $index + str-length($search)),
+        $search,
+        $replace
+      );
+  }
+  @return $string;
+}

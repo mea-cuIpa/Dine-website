@@ -1,0 +1,84 @@
+:root {
+  --clr-primary-100: hsl(27, 22%, 51%);
+  --primary-hue-100: 27;
+
+  --clr-primary-200: hsl(0, 0, 7%);
+  --primary-hue-200: 0;
+
+  --clr-secondary-100: hsla(217, 14%, 42%);
+  --secondary-hue-300: 217;
+
+  --clr-secondary-200: hsl(218, 21%, 18%);
+  --secondary-hue-200: 218;
+
+  --clr-marker-secondary-300: hsl(234, 30%, 13%);
+  --secondary-hue-100: 234;
+
+  --clr-accent-100: hsl(0, 43%, 50%);
+  --clr-accent-100-op50: hsla(0, 43%, 50%, 0.5);
+  --clr-neutral-100: hsl(0, 100%, 100%); // text
+
+  --clr-primary-200-op50: #{adjustHSLA(var(--clr-primary-200), $opacity: 0.5)};
+  --clr-secondary-100-op7: #{adjustHSLA(
+      var(--clr-secondary-100),
+      $opacity: 0.07
+    )};
+
+  @include defineColorHSL(--clr-neutral-100, 0, 100%, 100%);
+  @include defineColorHSL(--clr-primary-100, var(--primary-hue-100), 22%, 51%);
+  @include defineColorHSL(--clr-primary-200, var(--primary-hue-200), 0%, 7%);
+  @include defineColorHSL(
+    --clr-secondary-100,
+    var(--secondary-hue-100),
+    14%,
+    42%
+  );
+  @include defineColorHSL(
+    --clr-secondary-200,
+    var(--secondary-hue-200),
+    21%,
+    18%
+  );
+  @include defineColorHSL(
+    --clr-secondary-300,
+    var(--secondary-hue-300),
+    30%,
+    13%
+  );
+
+  //shadows
+  --box-shadow-100: -1rem 2rem 5rem 0rem #{adjustHSLA(
+      var(--clr-primary-200),
+      $opacity: 0.3
+    )};
+
+  --br: 3rem;
+
+  --space-unit-rem: 1.6rem;
+
+  --space-unit: 1em;
+  --space-xxxxs: calc(0.125 * var(--space-unit));
+  --space-xxxs: calc(0.25 * var(--space-unit));
+  --space-xxs: calc(0.375 * var(--space-unit));
+  --space-xs: calc(0.5 * var(--space-unit));
+  --space-sm: calc(0.75 * var(--space-unit));
+  --space-md: calc(1.25 * var(--space-unit));
+  --space-lg: calc(2 * var(--space-unit));
+  --space-xl: calc(3.25 * var(--space-unit));
+  --space-xxl: calc(5.25 * var(--space-unit));
+  --space-xxxl: calc(8.5 * var(--space-unit));
+  --space-xxxxl: calc(13.75 * var(--space-unit));
+  --space-huge: calc(200 * var(--space-unit));
+
+  --padding-pages-horizontal: var(--space-md);
+  --padding-pages-vertical: var(--space-xxl);
+
+  @include respond(tab-land) {
+    --padding-pages-horizontal: var(--space-xxl);
+  }
+
+  @include respond(desktop) {
+    --padding-pages-vertical: var(--space-xxxl);
+    --padding-pages-horizontal: var(--space-xxxl);
+  }
+}

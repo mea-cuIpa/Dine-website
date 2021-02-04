@@ -1,0 +1,96 @@
+html {
+  font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5%
+}
+
+:root {
+  --fw-300: 300;
+  --fw-400: 400;
+  --fw-600: 600;
+  --fw-700: 700;
+
+  --ff-primary: 'Spartan', sans-serif;
+
+  --text-base-size: 1.5rem;
+  --text-scale-ratio: 1.2;
+
+  @include respond(tab-land) {
+    --text-base-size: 1.8rem;
+    --text-scale-ratio: 1.25;
+  }
+
+  --text-unit: var(--text-base-size);
+}
+
+:root {
+  --text-xxs: calc(
+    (var(--text-unit) / var(--text-scale-ratio)) / var(--text-scale-ratio) /
+      var(--text-scale-ratio)
+  ); // .868rem | 0.92rem
+  --text-xs: calc(
+    var(--text-xxs) * var(--text-scale-ratio)
+  ); // 1.042rem | 1.152rem
+  --text-sm: calc(
+    var(--text-xs) * var(--text-scale-ratio)
+  ); // 1.250rem |  1.44rem
+  --text-md: calc(
+    var(--text-sm) * var(--text-scale-ratio) * var(--text-scale-ratio)
+  ); // 1.8rem | 2.25rem
+  --text-lg: calc(
+    var(--text-md) * var(--text-scale-ratio)
+  ); // 2.16rem | 2.813rem
+  --text-xl: calc(
+    var(--text-lg) * var(--text-scale-ratio)
+  ); // 2.592rem   | 3.516rem
+  --text-xxl: calc(
+    var(--text-xl) * var(--text-scale-ratio)
+  ); // 3.11rem | 4.395rem
+  --text-xxxl: calc(
+    var(--text-xxl) * var(--text-scale-ratio)
+  ); // 3.732rem  | 5.493rem
+  --text-xxxxl: calc(
+    var(--text-xxxl) * var(--text-scale-ratio)
+  ); // 4.479rem | 6.866rem
+}
+
+h1,
+.h1 {
+  font-size: var(--text-xxxl);
+  font-weight: var(--fw-300);
+  letter-spacing: 0.8px;
+  line-height: 1.3;
+
+  @include respond(tab-land) {
+    font-size: var(--text-xxl);
+    line-height: 1.125;
+  }
+
+  @include respond(desktop) {
+    font-size: var(--text-xxxxl);
+  }
+}
+
+h2,
+.h2 {
+  font-size: var(--text-xxl);
+  font-weight: var(--fw-700);
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+h3,
+.h3 {
+  font-size: calc(var(--text-base-size) + 1);
+  font-weight: var(--fw-700);
+  letter-spacing: 2;
+  line-height: 1.56;
+  @include respond(tab-land) {
+    font-size: var(--text-base-size);
+    font-weight: var(--fw-700);
+    letter-spacing: 0.22px;
+    line-height: 2;
+  }
+}
+
+h4 {
+  font-size: var(--text-base-size);
+}

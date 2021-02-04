@@ -1,0 +1,197 @@
+.booking .header {
+  background-image: url(../images/booking/hero-bg-mobile.jpg);
+  @include resolution(high) {
+    background-image: url(../images/booking/hero-bg-mobile@2x.jpg);
+  }
+  p {
+    max-width: 36ch;
+  }
+  &__intro {
+    margin-bottom: 20rem;
+    text-align: center;
+  }
+
+  @include respond(tab-land) {
+    background-image: url(../images/booking/hero-bg-tablet.jpg);
+    @include resolution(high) {
+      background-image: url(../images/booking/hero-bg-tablet@2x.jpg);
+    }
+    .logo {
+      justify-self: start;
+    }
+    .btn {
+      display: none;
+    }
+  }
+
+  @include respond(desktop) {
+    background-image: url(../images/booking/hero-bg-desktop.jpg);
+    @include resolution(high) {
+      background-image: url(../images/booking/hero-bg-desktop@2x.jpg);
+    }
+    p {
+      max-width: 30ch;
+    }
+    &__intro {
+      margin-bottom: 0;
+      text-align: left;
+    }
+  }
+}
+
+.reservation {
+  display: grid;
+  justify-content: center;
+  z-index: 100;
+
+  @include respond(desktop) {
+    background-image: url(../images/patterns/pattern-curve-bottom-right.svg);
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: contain;
+    justify-content: end;
+  }
+
+  &__form {
+    background-color: inherit;
+    max-width: 54rem;
+    padding: 2.8rem;
+    box-shadow: var(--box-shadow-100);
+    display: grid;
+    align-content: center;
+    margin-top: calc(-3.3 * var(--padding-pages-vertical));
+    --br-line-display: none;
+    @include respond(tab-land) {
+      padding: 4rem;
+    }
+
+    @include respond(desktop) {
+      --br-line-top: calc(3.1 * var(--padding-pages-vertical));
+      --br-line-left: -8rem;
+      --br-line-z-index: -1;
+      --br-line-display: block;
+    }
+
+    .input-group {
+      color: var(--clr-error);
+    }
+
+    input {
+      width: 100%;
+      border-bottom: 1px solid var(--clr-error, var(--clr-primary-200-op50));
+      padding: 0 1rem 1rem 1rem;
+    }
+
+    .input-group > .error__message {
+      padding-left: 1rem;
+    }
+
+    .error__message {
+      font-size: var(--text-xxs);
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+    .error .error__message {
+      opacity: 1;
+    }
+
+    ::placeholder {
+      color: var(--clr-error, var(--clr-primary-200-op50));
+    }
+
+    .inline-input {
+      display: grid;
+      grid-auto-flow: column;
+      column-gap: 3rem;
+      align-items: center;
+
+      .date_fields {
+        display: grid;
+        grid-auto-flow: column;
+        grid-row: 2;
+        gap: 2rem;
+        @include respond(tab-land) {
+          grid-row: 1;
+        }
+      }
+
+      input {
+        text-align: center;
+      }
+    }
+
+    input#people {
+      border-bottom: none;
+      vertical-align: top;
+      padding-right: 0;
+      max-width: 3.7rem;
+    }
+
+    .counter {
+      justify-content: space-between;
+      border-bottom: 1px solid var(--clr-primary-200-op50);
+    }
+
+    .ampm {
+      position: relative;
+      input {
+        cursor: pointer;
+        text-align: left;
+      }
+
+      &__arrow {
+        position: absolute;
+        top: 19%;
+        right: 1rem;
+        transition: all 0.2s ease;
+      }
+
+      &:hover .ampm__arrow {
+        transform: rotate(180deg);
+      }
+
+      &:hover .ampm__list {
+        opacity: 1;
+        z-index: 100;
+      }
+
+      &__list {
+        opacity: 0;
+        z-index: -1;
+        position: absolute;
+        top: 60%;
+        display: grid;
+        justify-items: end;
+        justify-content: center;
+        background: var(--clr-neutral-100);
+        transition: all 0.2s ease-in-out;
+
+        li {
+          width: 5.8rem;
+          padding: 0.5rem 2rem;
+          box-sizing: content-box;
+          &:hover {
+            background-color: adjustHSLA(
+              var(--clr-secondary-100),
+              $opacity: 0.2
+            );
+          }
+        }
+
+        li::before {
+          content: '';
+          display: inline-block;
+          background-image: url(../images/icons/icon-check.svg);
+          background-repeat: no-repeat;
+          height: 1.2rem;
+          width: 1.2rem;
+          margin-right: 1rem;
+          opacity: 0;
+        }
+        li.selected::before {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
